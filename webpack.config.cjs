@@ -43,7 +43,7 @@ const config = {
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.vue', '.tsx', '.ts', '.js']
     },
     plugins: [
         new ESBuildPlugin(),
