@@ -2,7 +2,17 @@ const { resolve } = require('path')
 const { ESBuildPlugin } = require('esbuild-loader')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const templatePlugin = require('./template.plugin.cjs')
+const { createTemplatePlugin } = require('./template.plugin.cjs')
+
+const entry = {
+    app: './src/app.js',
+    bpp: './src/bpp.js',
+}
+
+const templatePlugins = Object.keys(entry).map(it => createTemplatePlugin({
+    chunks: [it],
+    filename: `${it}.html`,
+}))
 
 const config = {
     module: {
@@ -48,7 +58,7 @@ const config = {
     plugins: [
         new ESBuildPlugin(),
         new VueLoaderPlugin(),
-        ...templatePlugin,
+        ...templatePlugins,
     ],
     optimization: {
         splitChunks: {
@@ -56,6 +66,7 @@ const config = {
             automaticNameDelimiter: '_',
         },
     },
+    entry,
     output: {
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',
