@@ -21,12 +21,11 @@ const config = {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             }, {
-                test: /\.tsx?$/,
+                test: /\.js$/,
                 use: [{
                     loader: 'esbuild-loader',
                     options: {
-                        loader: 'tsx',
-                        target: 'es2020'
+                        target: 'es2015'
                     }
                 }],
                 exclude: /node_modules/,
@@ -37,27 +36,19 @@ const config = {
                 test: /\.(css|less)$/,
                 use: [
                     { loader: 'style-loader' },
-                    { loader: 'css-loader', options: { modules: true } },
-                    { loader: 'less-loader' },
-                ],
-                exclude: /node_modules/
-            }, {
-                test: /\.(css|less)$/,
-                use: [
-                    { loader: 'style-loader' },
                     { loader: 'css-loader' },
                     { loader: 'less-loader' },
                 ],
-                include: /node_modules/
+                exclude: /node_modules/
             }
         ]
     },
     resolve: {
-        extensions: ['.vue', '.tsx', '.ts', '.js']
+        extensions: ['.vue', '.js']
     },
     plugins: [
-        new ESBuildPlugin(),
         new VueLoaderPlugin(),
+        new ESBuildPlugin(),
         ...templatePlugins,
     ],
     optimization: {
