@@ -1,13 +1,18 @@
 <template>
   <div id="app">
     <p>bpp!</p>
+    <!-- <good-component /> -->
   </div>
 </template>
 
 <script>
+// import GoodComponent from "../components/good-component.js";
+
 export default {
   name: "Bpp",
-  components: {},
+  components: {
+    // GoodComponent,
+  },
 };
 </script>
 

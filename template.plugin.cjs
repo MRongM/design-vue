@@ -1,26 +1,21 @@
+const { readFileSync } = require('fs')
+const { resolve } = require('path')
 const { MiniHtmlWebpackPlugin, generateJSReferences } = require('mini-html-webpack-plugin')
+
+const indexHtml = readFileSync(resolve(__dirname, './index.html')).toString('utf-8') || ''
+
+function render(template = '', scope = {}) {
+    return template.replace(/(\{\{(\w+)}})/g, (...args) => scope[args[2]] || args[0])
+}
+
+function htmlTemplate({ publicPath, js }) {
+    const jsTags = generateJSReferences({ files: js, publicPath })
+    return render(indexHtml, { jsTags })
+}
 
 function createTemplatePlugin(options = {}) {
     return new MiniHtmlWebpackPlugin({
-        template({ publicPath, js }) {
-            const jsTags = generateJSReferences({
-                files: js,
-                publicPath
-            })
-            return `<!DOCTYPE html>
-        <html lang="zh">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>design-vue</title>
-        </head>
-        <body>
-            <div id="app"></div>
-            ${jsTags}
-        </body>
-        </html>`
-        },
+        template: htmlTemplate,
         ...options,
     })
 }

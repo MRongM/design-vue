@@ -1,5 +1,4 @@
 const { resolve } = require('path')
-const { ESBuildPlugin } = require('esbuild-loader')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const { createTemplatePlugin } = require('./template.plugin.cjs')
@@ -21,15 +20,6 @@ const config = {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             }, {
-                test: /\.js$/,
-                use: [{
-                    loader: 'esbuild-loader',
-                    options: {
-                        target: 'es2015'
-                    }
-                }],
-                exclude: /node_modules/,
-            }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{ loader: 'file-loader', options: { outputPath: 'assets' } }],
             }, {
@@ -38,8 +28,7 @@ const config = {
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },
                     { loader: 'less-loader' },
-                ],
-                exclude: /node_modules/
+                ]
             }
         ]
     },
@@ -48,7 +37,6 @@ const config = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new ESBuildPlugin(),
         ...templatePlugins,
     ],
     optimization: {
