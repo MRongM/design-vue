@@ -1,19 +1,20 @@
 <template>
   <div id="app">
     <p>bpp!</p>
-    <!-- <good-component /> -->
+    <good-component />
   </div>
 </template>
 
 <script>
-// import GoodComponent from "../components/good-component.js";
+import GoodComponent from "../components/good-component.jsx";
 
 export default {
   name: "Bpp",
   components: {
-    // GoodComponent,
+    GoodComponent,
   },
 };
+
 </script>
 
 <style>

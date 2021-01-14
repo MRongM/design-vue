@@ -18,7 +18,10 @@ const config = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+            }, {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
             }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{ loader: 'file-loader', options: { outputPath: 'assets' } }],
