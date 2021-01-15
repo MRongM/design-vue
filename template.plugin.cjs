@@ -5,7 +5,7 @@ const { MiniHtmlWebpackPlugin, generateJSReferences } = require('mini-html-webpa
 const indexHtml = readFileSync(resolve(__dirname, './index.html')).toString('utf-8') || ''
 
 function render(template = '', scope = {}) {
-    return template.replace(/(\{\{(\w+)}})/g, (...args) => scope[args[2]] || args[0])
+    return template.replace(/(\${(\w+)})/g, (...args) => scope[args[2]] || args[0])
 }
 
 function htmlTemplate({ publicPath, js }) {

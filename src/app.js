@@ -4,5 +4,9 @@ import App from './pages/app.vue'
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App)
+  render(h) {
+    return (
+      <App />
+    )
+  }
 }).$mount("#app")

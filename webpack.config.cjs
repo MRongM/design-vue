@@ -4,6 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { createTemplatePlugin } = require('./template.plugin.cjs')
 
 const entry = {
+    index: './src/index.js',
     app: './src/app.js',
     bpp: './src/bpp.js',
 }

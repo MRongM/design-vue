@@ -5,7 +5,7 @@ function now() {
 }
 
 export default Vue.extend({
-    name: 'good-component',
+    name: 'GoodComponent',
     data() {
         return {
             count: 0

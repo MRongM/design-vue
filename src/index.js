@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import Bpp from './pages/bpp.vue'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render(h) {
-    return (
-      <Bpp />
-    )
-  }
+    render(h) {
+        return (
+            <div>Hello Vue.js</div>
+        )
+    }
 }).$mount("#app")
