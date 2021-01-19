@@ -4,9 +4,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { createTemplatePlugin } = require('./template.plugin.cjs')
 
 const entry = {
-    index: './src/index.js',
-    app: './src/app.js',
-    bpp: './src/bpp.js',
+    index: './src/index.jsx',
+    app: './src/app.jsx',
+    bpp: './src/bpp.jsx',
 }
 
 const templatePlugins = Object.keys(entry).map(it => createTemplatePlugin({
@@ -25,7 +25,12 @@ const config = {
                 loader: 'babel-loader',
             }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
-                use: [{ loader: 'file-loader', options: { outputPath: 'assets' } }],
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'assets'
+                    }
+                }],
             }, {
                 test: /\.(css|less)$/,
                 use: [
@@ -37,7 +42,7 @@ const config = {
         ]
     },
     resolve: {
-        extensions: ['.vue', '.js']
+        extensions: ['.vue', '.js', '.jsx']
     },
     plugins: [
         new VueLoaderPlugin(),

@@ -18,7 +18,7 @@
 const initData = {
   someText: "",
   someSelect: "1",
-};
+}
 
 export default {
   name: "TheForm",
