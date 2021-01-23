@@ -22,7 +22,15 @@ const config = {
                 loader: 'vue-loader',
             }, {
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@vue/babel-preset-jsx',
+                        ]
+                    }
+
+                }]
             }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{
