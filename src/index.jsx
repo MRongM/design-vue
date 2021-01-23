@@ -15,6 +15,16 @@ const store = new Vuex.Store({
             state.count = payload
         }
     },
+    actions: {
+        setCountAfter1s({ commit }, payload) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    commit('setCount', payload)
+                    resolve()
+                }, 1000)
+            })
+        }
+    }
 })
 
 const app = new Vue({
