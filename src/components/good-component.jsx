@@ -4,8 +4,7 @@ function now() {
     return new Date().toISOString()
 }
 
-export default Vue.extend({
-    name: 'GoodComponent',
+export default {
     data() {
         return {
             count: 0
@@ -28,4 +27,4 @@ export default Vue.extend({
             </div>
         )
     }
-})
+}
