@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    <p>bpp!</p>
-    <good-component />
+    <hello msg="Hello Vue!" />
+    <good-component/>
   </div>
 </template>
 
 <script>
-import GoodComponent from "../components/good-component.jsx";
+import Hello from '@/components/hello.vue'
+import GoodComponent from '@/components/good-component'
 
 export default {
-  name: "Bpp",
+  name: 'App',
   components: {
     GoodComponent,
+    Hello,
   },
-};
-
+}
 </script>
 
 <style>

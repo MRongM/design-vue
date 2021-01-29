@@ -1,14 +1,18 @@
 <template>
   <div>
-    <input type="text" v-model="someText" />
-    <select v-model="someSelect">
-      <option value="1">option1</option>
-      <option value="2">option2</option>
-      <option value="3">option3</option>
-    </select>
-    <br />
+    <label>
+      <input type="text" v-model="someText"/>
+    </label>
+    <label>
+      <select v-model="someSelect">
+        <option value="1">option1</option>
+        <option value="2">option2</option>
+        <option value="3">option3</option>
+      </select>
+    </label>
+    <br/>
     <span>{{ formData }}</span>
-    <br />
+    <br/>
     <button @click="handleClickReset">Reset</button>
     <button @click="handleClickSubmit">Submit</button>
   </div>

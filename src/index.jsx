@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Counter from './pages/counter.jsx'
+import Counter from './pages/counter/counter.jsx'
 
 Vue.config.productionTip = false
 

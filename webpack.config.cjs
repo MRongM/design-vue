@@ -6,7 +6,7 @@ const { createTemplatePlugin } = require('./template.plugin.cjs')
 const entry = {
     index: './src/index.jsx',
     app: './src/app.jsx',
-    bpp: './src/bpp.jsx',
+    'sample-list': './src/sample-list.jsx',
 }
 
 const templatePlugins = Object.keys(entry).map(it => createTemplatePlugin({
@@ -27,6 +27,13 @@ const config = {
                     options: {
                         presets: [
                             '@vue/babel-preset-jsx',
+                        ],
+                        plugins: [
+                            ["import", {
+                                "libraryName": "ant-design-vue",
+                                "libraryDirectory": "es",
+                                "style": "css"
+                            }]
                         ]
                     }
 
@@ -50,7 +57,10 @@ const config = {
         ]
     },
     resolve: {
-        extensions: ['.vue', '.js', '.jsx']
+        extensions: ['.vue', '.js', '.jsx'],
+        alias: {
+            '@': resolve(__dirname, 'src')
+        }
     },
     plugins: [
         new VueLoaderPlugin(),
