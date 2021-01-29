@@ -1,9 +1,3 @@
-import Vue from 'vue'
-
-function now() {
-    return new Date().toISOString()
-}
-
 export default {
     data() {
         return {
@@ -12,13 +6,10 @@ export default {
     },
     methods: {
         handleClick(ev) {
-            console.log(now(), 'click button')
             this.count++
         }
     },
     render() {
-        console.log(new Date().toISOString(), 'render good-component')
-
         return (
             <div>
                 <p>Good Component with pure JavaScript</p>

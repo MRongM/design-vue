@@ -2,19 +2,21 @@
   <div class="sample-table">
     <a-table @change="handlePaginationChange" :loading="loading" :columns="columns" :data-source="dataSource"
              :pagination="pagination">
-      <a slot="name" slot-scope="text">{{ text }}</a>
-      <span slot="type" slot-scope="text">{{ titleCase(text) }}</span>
-      <span slot="customTitle"><a-icon type="smile-o"/> Name</span>
-      <span slot="action" slot-scope="text, record">
-        <a @click="handleEdit(text)">Edit</a>
-        <a-divider type="vertical"/>
-        <a-popconfirm placement="top" ok-text="Yes" cancel-text="No" @confirm="handleDelete(text)">
-          <template slot="title">
-            <p>Are you sure you want to delete?</p>
-          </template>
-          <a>Delete</a>
-        </a-popconfirm>
-      </span>
+      <template #name="text"><a>{{ text }}</a></template>
+      <template #type="text"><span>{{ titleCase(text) }}</span></template>
+      <template #custom-title><span><a-icon type="smile-o"/> Name</span></template>
+      <template #action="record">
+        <span>
+          <a @click="handleEdit(record)">Edit</a>
+          <a-divider type="vertical"/>
+          <a-popconfirm placement="top" ok-text="Yes" cancel-text="No" @confirm="handleDelete(record)">
+            <template #title>
+              <p>Are you sure you want to delete?</p>
+            </template>
+            <a>Delete</a>
+          </a-popconfirm>
+        </span>
+      </template>
     </a-table>
   </div>
 </template>
@@ -52,7 +54,7 @@ export default {
         {
           dataIndex: 'name',
           key: 'name',
-          slots: { title: 'customTitle' },
+          slots: { title: 'custom-title' },
           scopedSlots: { customRender: 'name' },
         },
         {

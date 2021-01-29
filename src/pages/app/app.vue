@@ -1,19 +1,16 @@
 <template>
   <div id="app">
-    <hello msg="Hello Vue!" />
     <good-component/>
   </div>
 </template>
 
 <script>
-import Hello from '@/components/hello.vue'
-import GoodComponent from '@/components/good-component'
+import GoodComponent from '@/components/good-component.jsx'
 
 export default {
   name: 'App',
   components: {
     GoodComponent,
-    Hello,
   },
 }
 </script>
