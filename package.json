@@ -12,6 +12,10 @@
     "serve": "node serve.mjs",
     "clean": "rm -rf dist"
   },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=7"
+  },
   "dependencies": {
     "express": "^4.17.1"
   },
