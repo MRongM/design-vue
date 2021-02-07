@@ -1,18 +1,12 @@
 const { resolve } = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const { createTemplatePlugin } = require('./template.plugin.cjs')
-
-const entry = {
-    index: './src/index.jsx',
-    app: './src/app.jsx',
-    'sample-list': './src/sample-list.jsx',
-}
-
-const templatePlugins = Object.keys(entry).map(it => createTemplatePlugin({
-    chunks: [it],
-    filename: `${it}.html`,
-}))
+const entries = [
+    { entryName: 'index', entryFile: './src/index.jsx' },
+    { entryName: 'app', entryFile: './src/app.jsx' },
+    { entryName: 'sample-list', entryFile: './src/sample-list.jsx' },
+]
 
 const config = {
     module: {
@@ -41,19 +35,30 @@ const config = {
             }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{
-                    loader: 'file-loader',
+                    loader: 'url-loader',
                     options: {
-                        outputPath: 'assets'
+                        limit: 8192,
+                        fallback: {
+                            loader: 'file-loader',
+                            options: { outputPath: 'assets' }
+                        }
                     }
                 }],
             }, {
-                test: /\.(css|less)$/,
+                test: /\.module\.(css|less)$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader', options: { modules: true } },
+                    { loader: 'less-loader' },
+                ],
+            }, {
+                test: (name) => /\.(css|less)$/.test(name) && !/\.module\.(css|less)$/.test(name),
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },
                     { loader: 'less-loader' },
-                ]
-            }
+                ],
+            },
         ]
     },
     resolve: {
@@ -64,7 +69,11 @@ const config = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        ...templatePlugins,
+        ...entries.map(entry => new HtmlWebpackPlugin({
+            filename: `${entry.entryName}.html`,
+            chunks: [entry.entryName],
+            template: 'index.html',
+        })),
     ],
     optimization: {
         splitChunks: {
@@ -72,7 +81,7 @@ const config = {
             automaticNameDelimiter: '_',
         },
     },
-    entry,
+    entry: entries.reduce((a, c) => (a[c.entryName] = c.entryFile, a), {}),
     output: {
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',
