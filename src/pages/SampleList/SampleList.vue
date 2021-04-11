@@ -10,12 +10,11 @@
 </template>
 
 <script>
-import SearchFrom from '@/pages/sample-list/search-form'
-import SampleTable from '@/pages/sample-list/sample-table'
-import SampleModal from '@/pages/sample-list/sample-modal'
+import SearchFrom from '@/pages/SampleList/SearchForm'
+import SampleTable from '@/pages/SampleList/SampleTable'
+import SampleModal from '@/pages/SampleList/SampleModal'
 
 export default {
-  name: 'SampleList',
   components: {
     SampleModal,
     SampleTable,

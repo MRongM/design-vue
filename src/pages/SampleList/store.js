@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { searchSampleList, deleteSampleById } from '@/api/sample-api'
+import { searchSampleList, deleteSampleById } from '@/api/sample'
 import { sleep } from '@/utils/schedule'
 import { message } from 'ant-design-vue'
 

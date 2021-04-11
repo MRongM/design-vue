@@ -3,9 +3,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const entries = [
-    { entryName: 'index', entryFile: './src/index.jsx' },
-    { entryName: 'app', entryFile: './src/app.jsx' },
-    { entryName: 'sample-list', entryFile: './src/sample-list.jsx' },
+    { entryName: 'index', entryFile: './src/index.js' },
+    { entryName: 'counter', entryFile: './src/counter.js' },
+    { entryName: 'sample', entryFile: './src/sample.js' },
 ]
 
 const config = {
@@ -31,7 +31,8 @@ const config = {
                         ]
                     }
 
-                }]
+                }],
+                exclude: /node_modules/
             }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{
@@ -81,7 +82,7 @@ const config = {
             automaticNameDelimiter: '_',
         },
     },
-    entry: entries.reduce((a, c) => (a[c.entryName] = c.entryFile, a), {}),
+    entry: entries.reduce((a, c) => Object.assign(a, { [c.entryName]: c.entryFile }), {}),
     output: {
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',

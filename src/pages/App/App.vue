@@ -1,14 +1,21 @@
+<!--suppress HtmlUnknownTarget -->
 <template>
   <div id="app">
-    <good-component/>
+    <ul class="nav">
+      <li><a href="/index.html">App</a></li>
+      <li><a href="/counter.html">Counter</a></li>
+      <li><a href="/sample.html">Sample List</a></li>
+    </ul>
+    <hr>
+    <GoodComponent />
+
   </div>
 </template>
 
 <script>
-import GoodComponent from '@/components/good-component.jsx'
+import GoodComponent from '@/components/GoodComponent.jsx'
 
 export default {
-  name: 'App',
   components: {
     GoodComponent,
   },
@@ -23,5 +30,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.nav > li {
+  display: inline;
 }
 </style>

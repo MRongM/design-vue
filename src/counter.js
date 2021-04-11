@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Counter from './pages/counter/counter.jsx'
+import Counter from './pages/Counter/Counter.jsx'
 
 Vue.config.productionTip = false
 
@@ -29,14 +29,7 @@ const store = new Vuex.Store({
 
 const app = new Vue({
     store,
-    render(h) {
-        return (
-            <div>
-                <h2>Hello Vue.js</h2>
-                <Counter />
-            </div>
-        )
-    },
+    render: h => h(Counter),
 })
 
 app.$mount("#app")

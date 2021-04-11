@@ -28,7 +28,6 @@
 
 <script>
 export default {
-  name: 'SearchFrom',
   props: {
     searchLoading: {
       type: Boolean,

@@ -1,7 +1,6 @@
 import { mapState } from 'vuex'
 
 export default {
-    name: 'Counter',
     render(h) {
         return (
             <div>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-import SampleList from '@/pages/sample-list/sample-list.vue'
-import store from '@/pages/sample-list/store.js'
+import SampleList from '@/pages/SampleList/SampleList.vue'
+import store from '@/pages/SampleList/store.js'
 
 import { Modal, Table, Button, Select, Form, Input, Divider, Tag, Icon, Popconfirm } from 'ant-design-vue'
 
@@ -13,9 +13,7 @@ Vue.config.productionTip = false
 
 const app = new Vue({
     store,
-    render() {
-        return (<SampleList/>)
-    }
+    render: h => h(SampleList)
 })
 
 app.$mount("#app")
